@@ -36,10 +36,11 @@ export default function TabLayout() {
       <Tabs.Screen
         name="explore"
         options={{
-          title: 'Explore',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
+          title: 'Deck Creation',
+          tabBarIcon: ({ color }) => <IconSymbol size={28} name="pencil" color={color} />,
         }}
       />
+
     </Tabs>
   );
 }
