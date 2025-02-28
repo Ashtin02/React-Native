@@ -1,5 +1,5 @@
-import { StyleSheet, Text, View, FlatList } from 'react-native';
-import React from 'react';
+import { StyleSheet, Text, View, FlatList, TouchableOpacity } from 'react-native';
+import React, { useState } from 'react';
 import Flashcard from '@/components/flashcard';
 
 const decks = [
@@ -13,7 +13,17 @@ const decks = [
 },
 ];
 
+
 export default function DetailedDeck() {
+    const [correct, setCorrect] = useState(0);
+    
+    const handleIncorrect = () => {
+        setCorrect(correct - 1)
+    }
+
+    const handleCorrect = () => {
+        setCorrect(correct + 1)
+    }
 return (
     <View style={styles.container}>
     <Text style={styles.title}>{decks[0].name}</Text>
@@ -27,6 +37,9 @@ return (
         horizontal 
         showsHorizontalScrollIndicator={false} 
         />
+        <TouchableOpacity style={[styles.button, styles.correct] } onPress={handleCorrect}> <Text style={styles.buttontext}> 👍 </Text></TouchableOpacity>
+        <Text style={styles.counter}>{correct}</Text>
+        <TouchableOpacity style={[styles.button, styles.incorrect]} onPress={handleIncorrect}> <Text style={styles.buttontext}> 👎 </Text></TouchableOpacity>
         </View>
         );
 }
@@ -39,8 +52,9 @@ container: {
     padding: 20, 
 },
 title: {
-    fontSize: 30,
-    paddingBottom: 20, 
+    fontSize: 40,
+    paddingTop:20,
+    fontWeight:"bold",
 },
 flashcard: {
     margin: 25,
@@ -52,5 +66,29 @@ flashcard: {
     alignItems: 'center',
     position: 'relative',
     
-},
+    },
+    button: {
+        position: 'absolute',
+        padding: 10,
+        borderRadius: 30,
+        backgroundColor: '#ddd',
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: 60,
+        height: 60,
+    }, 
+    buttontext: {
+        fontSize:25
+    }, 
+    correct: {
+        bottom: 20,
+        right: 20
+    }, 
+    incorrect: {
+        left: 20,
+        bottom: 20,
+    }, 
+    counter: {
+        bottom: 20, 
+    }
 });
