@@ -2,16 +2,16 @@ import { StyleSheet, Text, View, FlatList, TouchableOpacity } from 'react-native
 import React, { useState } from 'react';
 import Flashcard from '@/app/flashcard';
 import flashcardData from "../decks.json"
-import { router } from 'expo-router';
-
-const decks = require('../decks.json')
+import { router, useLocalSearchParams } from 'expo-router';
+import deckData from '../decks.json'
 
 
 
 
 export default function DetailedDeck() {
+    const { name } = useLocalSearchParams();
     const [correct, setCorrect] = useState(0);
-    const [selectedDeck, setSelectedDeck] = useState('');
+    const selectedDeck = deckData.find(deck => deck.name === name);
     
     const handleIncorrect = () => {
         setCorrect(correct - 1)
@@ -20,13 +20,18 @@ export default function DetailedDeck() {
     const handleCorrect = () => {
         setCorrect(correct + 1)
     }
+
+    if (!selectedDeck) {
+        return <Text style={styles.error}>Deck not found!</Text>;
+    }
+
 return (
     <View style={styles.container}>
-    <Text style={styles.title}>{decks[0].name}</Text>
+    <Text style={styles.title}>{selectedDeck.name}</Text>
 
       {/* FlatList with horizontal scrolling */}
         <FlatList
-        data={decks[0].flashcards}
+        data={selectedDeck.flashcards}
                 renderItem={({ item }) => (
                     <Flashcard answer={item.answer} question={item.question} />
         )}
@@ -51,6 +56,12 @@ title: {
     fontSize: 40,
     paddingTop:20,
     fontWeight:"bold",
+},
+error: {
+    fontSize: 20,
+    color: 'red',
+    textAlign: 'center',
+    marginTop: 20,
 },
 flashcard: {
     margin: 25,

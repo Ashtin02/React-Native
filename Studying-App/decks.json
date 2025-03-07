@@ -17,7 +17,7 @@
     },
     {
         "id":2,
-        "name": "BIOL 142",
+        "name": "BIOL 143",
         "flashcards": [
             { "question": "What is the powerhouse of the cell?", "answer": "The mitochondrion." },
             { "question": "What is the function of ribosomes?", "answer": "To synthesize proteins." },
