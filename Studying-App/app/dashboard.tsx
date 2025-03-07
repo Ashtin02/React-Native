@@ -29,7 +29,7 @@ export default function HomeScreen() {
         data={filteredDecks}
         keyExtractor={(deck) => deck.id}
         renderItem={({ item }) => (
-          <DashboardDecks deck={item} onPress={() => router.push({ pathname: "/deck", params: { title: item.title } })} />
+          <DashboardDecks deck={item} onPress={() => router.push("/deck")}  />
         )}
         ListFooterComponent={<AddDeckButton onPress={() => router.push('/creation')} />}
       />
