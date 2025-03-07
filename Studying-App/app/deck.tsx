@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, FlatList, TouchableOpacity } from 'react-native';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Flashcard from '@/app/flashcard';
 import flashcardData from "../decks.json"
 import { router, useLocalSearchParams } from 'expo-router';
@@ -9,20 +9,36 @@ import deckData from '../decks.json'
 
 
 export default function DetailedDeck() {
-    const { name } = useLocalSearchParams();
+    const { name } = useLocalSearchParams< { name?: string }>();
     const [correct, setCorrect] = useState(0);
     const selectedDeck = deckData.find(deck => deck.name === name);
     
+
+    // Reset correct counter when a new deck is selected (based on name change)
+    useEffect(() => {
+        setCorrect(0);
+    }, [name]);
+    
     const handleIncorrect = () => {
-        setCorrect(correct - 1)
+        if (correct > 0) {
+            setCorrect(correct - 1)
+        }
     }
 
     const handleCorrect = () => {
-        setCorrect(correct + 1)
+        if(selectedDeck?.flashcards.length != undefined){
+            if (correct < selectedDeck?.flashcards.length) {
+                setCorrect(correct + 1)
+            }
+        }
+    }
+
+    if (!name) {
+        return <View style= {styles.container}><Text style={styles.error}> Invalid deck name!</Text></View>
     }
 
     if (!selectedDeck) {
-        return <Text style={styles.error}>Deck not found!</Text>;
+        return <View style= {styles.container}><Text style={styles.error}>  Deck not found!</Text></View>
     }
 
 return (
@@ -31,7 +47,8 @@ return (
 
       {/* FlatList with horizontal scrolling */}
         <FlatList
-        data={selectedDeck.flashcards}
+            data={selectedDeck.flashcards}
+            keyExtractor={(item, index) => index.toString()} 
                 renderItem={({ item }) => (
                     <Flashcard answer={item.answer} question={item.question} />
         )}
@@ -39,7 +56,7 @@ return (
         showsHorizontalScrollIndicator={false} 
         />
         <TouchableOpacity style={[styles.button, styles.correct] } onPress={handleCorrect}> <Text style={styles.buttontext}> 👍 </Text></TouchableOpacity>
-        <Text style={styles.counter}>{correct}</Text>
+        <Text style={styles.counter}>{correct} / {selectedDeck.flashcards.length || 0}</Text>
         <TouchableOpacity style={[styles.button, styles.incorrect]} onPress={handleIncorrect}> <Text style={styles.buttontext}> 👎 </Text></TouchableOpacity>
         </View>
         );
