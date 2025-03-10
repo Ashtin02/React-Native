@@ -1,9 +1,14 @@
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import { useRouter } from "expo-router";
 
-export default function DashboardDecks({ deck, onPress }:
-     { deck: { id: string; title: string; cards: number }; onPress: () => void }) {
+export default function DashboardDecks({ deck, onPress }: { deck: { id: string; title: string; cards: number }; onPress: ()=> void  }) {
+  const router = useRouter();
+
   return (
-    <TouchableOpacity style={styles.deckCard} onPress={onPress}>
+    <TouchableOpacity
+      style={styles.deckCard}
+      onPress={() => router.push({ pathname: "/deck", params: { name: deck.title } })} // Pass deck ID
+    >
       <Text style={styles.deckTitle}>{deck.title}</Text>
       <Text style={styles.deckInfo}>{deck.cards} cards</Text>
     </TouchableOpacity>

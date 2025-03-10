@@ -4,6 +4,7 @@ import { useRouter } from "expo-router";
 import DashboardDecks from "./components/DashboardDecks";
 import SearchBar from "./components/SearchBar";
 import AddDeckButton from "./components/AddButton";
+import deckData from "../decks.json"
 
 export default function HomeScreen() {
   const router = useRouter();
@@ -28,9 +29,9 @@ export default function HomeScreen() {
         data={filteredDecks}
         keyExtractor={(deck) => deck.id}
         renderItem={({ item }) => (
-          <DashboardDecks deck={item} onPress={() => console.log(`Go to deck  NULL`)} />
+          <DashboardDecks deck={item} onPress={() => router.push("/deck")}  />
         )}
-        ListFooterComponent={<AddDeckButton onPress={() => console.log("Add new deck")} />}
+        ListFooterComponent={<AddDeckButton onPress={() => router.push('/creation')} />}
       />
     </View>
   );

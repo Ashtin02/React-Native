@@ -1,0 +1,53 @@
+[
+    {
+        "id":1,
+        "name": "ENGL 101",
+        "flashcards": [
+            { "question": "What is a metaphor?", "answer": "A figure of speech that compares two unlike things without using 'like' or 'as'." },
+            { "question": "Define alliteration.", "answer": "The repetition of consonant sounds at the beginning of words in a sentence or phrase." },
+            { "question": "What is an oxymoron?", "answer": "A figure of speech in which contradictory terms appear in conjunction." },
+            { "question": "What is a simile?", "answer": "A figure of speech comparing two things using 'like' or 'as'." },
+            { "question": "Define personification.", "answer": "Attributing human qualities to non-human things." },
+            { "question": "What is the theme of a story?", "answer": "The underlying message or central idea of a literary work." },
+            { "question": "What is irony?", "answer": "A literary device where the intended meaning is opposite to the literal meaning." },
+            { "question": "What is the difference between tone and mood?", "answer": "Tone is the author's attitude toward a subject, while mood is how the reader feels." },
+            { "question": "What is an allegory?", "answer": "A narrative with a hidden meaning, usually moral or political." },
+            { "question": "Define hyperbole.", "answer": "An exaggerated statement not meant to be taken literally." }
+        ]
+    },
+    {
+        "id":2,
+        "name": "BIOL 143",
+        "flashcards": [
+            { "question": "What is the powerhouse of the cell?", "answer": "The mitochondrion." },
+            { "question": "What is the function of ribosomes?", "answer": "To synthesize proteins." },
+            { "question": "Define homeostasis.", "answer": "The maintenance of a stable internal environment." },
+            { "question": "What are the four types of macromolecules?", "answer": "Carbohydrates, lipids, proteins, and nucleic acids." },
+            { "question": "What is the function of the nucleus?", "answer": "It houses DNA and controls cell activities." },
+            { "question": "What is osmosis?", "answer": "The diffusion of water across a selectively permeable membrane." },
+            { "question": "What is the role of enzymes?", "answer": "To speed up chemical reactions in the body." },
+            { "question": "What is an organelle?", "answer": "A specialized structure within a cell that performs a specific function." },
+            { "question": "What is a prokaryotic cell?", "answer": "A cell without a nucleus or membrane-bound organelles." },
+            { "question": "What is ATP?", "answer": "A molecule that stores and transfers energy within cells." },
+            { "question": "What is the function of the cell membrane?", "answer": "To regulate what enters and exits the cell." },
+            { "question": "What is a chloroplast?", "answer": "An organelle in plant cells responsible for photosynthesis." },
+            { "question": "What is mitosis?", "answer": "The process of cell division that results in two identical daughter cells." },
+            { "question": "What is the function of the endoplasmic reticulum?", "answer": "To synthesize and transport proteins and lipids." },
+            { "question": "What is the difference between DNA and RNA?", "answer": "DNA stores genetic information, while RNA helps in protein synthesis." }
+        ]
+    },
+    {
+        "id":3,
+        "name": "CHEM 120",
+        "flashcards": [
+            { "question": "What is the atomic number of oxygen?", "answer": "8" },
+            { "question": "Define a covalent bond.", "answer": "A chemical bond where two atoms share one or more pairs of electrons." },
+            { "question": "What is an acid?", "answer": "A substance that increases the hydrogen ion concentration in a solution." },
+            { "question": "What is a base?", "answer": "A substance that decreases the hydrogen ion concentration in a solution." },
+            { "question": "What is the periodic table?", "answer": "A tabular arrangement of chemical elements organized by atomic number." },
+            { "question": "What is a catalyst?", "answer": "A substance that speeds up a chemical reaction without being consumed." },
+            { "question": "What is the difference between endothermic and exothermic reactions?", "answer": "Endothermic reactions absorb heat, while exothermic reactions release heat." },
+            { "question": "What is the law of conservation of mass?", "answer": "Matter cannot be created or destroyed in a chemical reaction." }
+        ]
+    }
+]
