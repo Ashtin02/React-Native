@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View, FlatList, TouchableOpacity } from 'react-native';
 import React, { useEffect, useState } from 'react';
-import Flashcard from '@/app/flashcard';
+import Flashcard from '@/app/components/flashcard';
 import flashcardData from "../decks.json"
 import { router, useLocalSearchParams } from 'expo-router';
 import deckData from '../decks.json'
@@ -56,7 +56,7 @@ return (
         showsHorizontalScrollIndicator={false} 
         />
         <TouchableOpacity style={[styles.button, styles.correct] } onPress={handleCorrect}> <Text style={styles.buttontext}> 👍 </Text></TouchableOpacity>
-        <Text style={styles.counter}>{correct} / {selectedDeck.flashcards.length || 0}</Text>
+        <View><Text style={styles.counter}>{correct} / {selectedDeck.flashcards.length || 0}</Text></View>
         <TouchableOpacity style={[styles.button, styles.incorrect]} onPress={handleIncorrect}> <Text style={styles.buttontext}> 👎 </Text></TouchableOpacity>
         </View>
         );

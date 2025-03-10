@@ -1,6 +1,5 @@
 [
     {
-        "id":1,
         "name": "ENGL 101",
         "flashcards": [
             { "question": "What is a metaphor?", "answer": "A figure of speech that compares two unlike things without using 'like' or 'as'." },
@@ -16,7 +15,6 @@
         ]
     },
     {
-        "id":2,
         "name": "BIOL 143",
         "flashcards": [
             { "question": "What is the powerhouse of the cell?", "answer": "The mitochondrion." },
@@ -37,7 +35,6 @@
         ]
     },
     {
-        "id":3,
         "name": "CHEM 120",
         "flashcards": [
             { "question": "What is the atomic number of oxygen?", "answer": "8" },
