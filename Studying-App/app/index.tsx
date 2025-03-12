@@ -6,7 +6,7 @@ export default function Home() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Welcome to My  Project!
+      <Text style={styles.title}>Welcome to Our Project!
       </Text>
     </View>
   );
