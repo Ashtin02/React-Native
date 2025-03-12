@@ -1,6 +1,5 @@
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { useRouter } from "expo-router";
-import deckData from "../../decks.json"
 
 export default function DashboardDecks({ deck, onPress }: { deck: { name: string; cards:number }; onPress: ()=> void  }) {
   const router = useRouter();
