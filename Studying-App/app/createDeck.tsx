@@ -6,7 +6,7 @@ export default function creation() {
 const [deckName, setDeckName] = useState('');
 
 const handleContinue = () => {
-    router.push({ pathname: "/flashcardCreation", params: { deckName }  });
+    router.push({ pathname: "/addToDeck", params: { deckName }  });
 }
 
 return (

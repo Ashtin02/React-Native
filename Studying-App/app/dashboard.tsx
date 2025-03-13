@@ -79,7 +79,7 @@ export default function HomeScreen() {
               cards:item.flashcards.length
           }} onPress={() => router.push("/deck")} />
         )}
-        ListFooterComponent={<AddDeckButton onPress={() => router.push('/creation')} />}
+        ListFooterComponent={<AddDeckButton onPress={() => router.push('/createDeck')} />}
       />
     </View>
   );

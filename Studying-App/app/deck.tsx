@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View, FlatList, TouchableOpacity } from 'react-native';
 import React, { useEffect, useState } from 'react';
-import Flashcard from '@/app/components/flashcard';
+import Flashcard from './components/Flashcard';
 import flashcardData from "../decks.json"
 import { router, useLocalSearchParams } from 'expo-router';
 import deckData from '../decks.json'
