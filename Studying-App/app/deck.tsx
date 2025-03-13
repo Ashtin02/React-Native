@@ -1,9 +1,10 @@
 import { StyleSheet, Text, View, FlatList, TouchableOpacity } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import Flashcard from './components/Flashcard';
-import flashcardData from "../decks.json"
-import { router, useLocalSearchParams } from 'expo-router';
-import deckData from '../decks.json'
+import { useLocalSearchParams } from 'expo-router';
+import Flashcard from '@/app/components/flashcard';
+import { useLocalSearchParams } from 'expo-router';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 
@@ -11,9 +12,29 @@ import deckData from '../decks.json'
 export default function DetailedDeck() {
     const { name } = useLocalSearchParams< { name?: string }>();
     const [correct, setCorrect] = useState(0);
-    const selectedDeck = deckData.find(deck => deck.name === name);
-    
+    const [selectedDeck, setSelectedDeck] = useState<any>(null);
 
+    useEffect(() => {
+        const fetchDeck = async () => {
+            try {
+                if (name) {
+                    let keys = await AsyncStorage.getAllKeys();
+                    let entries = await AsyncStorage.multiGet(keys)
+                    let parsedDecks = entries.map(([name, flashcards]) => ({
+                        name,
+                        flashcards: flashcards ? JSON.parse(flashcards) :[],
+                    }));
+                    const selectedDeck = parsedDecks.find(deck => deck.name === name)
+                    setSelectedDeck(selectedDeck)
+                }
+            
+            } catch (error) {
+                console.error("Error Retrieving Selected Deck: ", error)
+            }
+        };
+        fetchDeck();
+    },[name])
+    
     // Reset correct counter when a new deck is selected (based on name change)
     useEffect(() => {
         setCorrect(0);
@@ -26,7 +47,7 @@ export default function DetailedDeck() {
     }
 
     const handleCorrect = () => {
-        if(selectedDeck?.flashcards.length != undefined){
+        if(selectedDeck?.flashcards?.length != undefined){
             if (correct < selectedDeck?.flashcards.length) {
                 setCorrect(correct + 1)
             }
