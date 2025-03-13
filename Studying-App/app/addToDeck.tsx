@@ -19,7 +19,7 @@ export default function FlashcardCreation() {
     // Update flashcards when navigating back to this screen
     useEffect(() => {
         if (existingFlashcards) {
-            console.log("Existing flashcards received:", existingFlashcards);
+            console.log("Flashcards in object array: ", existingFlashcards);
             setFlashcards(JSON.parse(existingFlashcards)); // Update with latest flashcards
         }
     }, [existingFlashcards]); 
@@ -34,14 +34,12 @@ export default function FlashcardCreation() {
     // Save all flashcards to AsyncStorage when "Finish" is clicked
     const saveFlashcards = async () => {
         try {
-            console.log(`Saving ${flashcards.length} flashcards for deck ${deckName}`, flashcards);
-            
             await AsyncStorage.setItem(deckName, JSON.stringify(flashcards));
 
             // confirm that the flashcards were saved
             const checkSaved = await AsyncStorage.getItem(deckName);
             const parsedSaved = checkSaved ? JSON.parse(checkSaved) : [];
-            console.log(`Verified saved flashcards for ${deckName}:`, parsedSaved);
+            console.log(`Saved flashcards in ${deckName}:`, parsedSaved);
 
             router.replace("/dashboard"); // redirect user to dashboard screen
         } catch (error) {

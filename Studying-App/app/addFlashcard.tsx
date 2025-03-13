@@ -34,7 +34,7 @@ export default function AddFlashcard() {
             const newFlashcard = { question, answer };
             const updatedFlashcards = [...parsedFlashcards, newFlashcard]; // copy old and new flashcards
 
-            console.log("New flashcard list being sent back:", updatedFlashcards);
+            console.log("New flashcard list being sent back to addTodeck:", updatedFlashcards);
 
             // Navigate back with updated flashcards as passed params
             router.replace({ 
