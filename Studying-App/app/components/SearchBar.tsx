@@ -1,5 +1,9 @@
 import { TextInput, StyleSheet } from "react-native";
 
+/**
+ * Component to support a search functionality, relies on a state (passed in as props) found within the implementing file
+ * @param param0 pass in the search states that this component relies on and is watching for changes
+ */
 export default function SearchBar({ search, setSearch }:
      { search: string; setSearch: (text: string) => void }) {
   return (

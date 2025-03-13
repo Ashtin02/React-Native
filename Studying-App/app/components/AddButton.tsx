@@ -1,5 +1,9 @@
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 
+/**
+ * Component to create a custom + button, with support for a unique onPress execution
+ * @param param0 pass in a prop (function) for this component to execute when clicked
+ */
 export default function AddDeckButton({ onPress }: { onPress: () => void }) {
   return (
     <View style={styles.addButtonContainer}>
