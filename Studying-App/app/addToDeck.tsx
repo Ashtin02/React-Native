@@ -1,7 +1,7 @@
 import { StyleSheet, Text, TouchableOpacity, View, FlatList } from 'react-native';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useRouter } from 'expo-router';
-import { useLocalSearchParams } from 'expo-router';
+import { useLocalSearchParams, useFocusEffect } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Flashcard from './components/Flashcard';
 
@@ -13,6 +13,7 @@ interface FlashcardType {
 export default function FlashcardCreation() {
     const { deckName, existingFlashcards } = useLocalSearchParams<{ deckName: string, existingFlashcards?: string }>();
     const [flashcards, setFlashcards] = useState<FlashcardType[]>([]); 
+    const [oldDeck, setOldDeck] = useState(deckName);
     const router = useRouter();
 
     // Update flashcards when navigating back to this screen
@@ -22,6 +23,13 @@ export default function FlashcardCreation() {
             setFlashcards(JSON.parse(existingFlashcards)); // Update with latest flashcards
         }
     }, [existingFlashcards]); 
+
+    // reset flashcard state(s) if the deck name has changed
+    if (oldDeck != deckName) {
+        setFlashcards([]);
+        setOldDeck(deckName);
+    }
+        
 
     // Save all flashcards to AsyncStorage when "Finish" is clicked
     const saveFlashcards = async () => {
