@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { View, FlatList, StyleSheet } from "react-native";
-import { useRouter } from "expo-router";
+import { useFocusEffect, useRouter } from "expo-router";
 import DashboardDecks from "./components/DashboardDecks";
 import SearchBar from "./components/SearchBar";
 import AddDeckButton from "./components/AddButton";
@@ -51,10 +51,14 @@ export default function HomeScreen() {
 /**
  * Reloads the decks dashboard each time app is loaded or updated
  */
-  useEffect(() => {
-    storePresetDecks()
-    getDecks()
-  }, [])
+  useFocusEffect(
+    useCallback(() => {
+      storePresetDecks(); 
+      getDecks(); 
+
+    }, []) 
+  );
+
 
 
   // deck state
@@ -79,7 +83,7 @@ export default function HomeScreen() {
               cards:item.flashcards.length
           }} onPress={() => router.push("/deck")} />
         )}
-        ListFooterComponent={<AddDeckButton onPress={() => router.push('/creation')} />}
+        ListFooterComponent={<AddDeckButton onPress={() => router.push('/createDeck')} />}
       />
     </View>
   );

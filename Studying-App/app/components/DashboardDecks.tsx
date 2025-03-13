@@ -1,6 +1,10 @@
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { useRouter } from "expo-router";
 
+/**
+ * This component helps to list the decks in an organized fashion for the dashboard page
+ * @param param0 object of the deck name, and the amount of cards it has
+ */
 export default function DashboardDecks({ deck, onPress }: { deck: { name: string; cards:number }; onPress: ()=> void  }) {
   const router = useRouter();
 

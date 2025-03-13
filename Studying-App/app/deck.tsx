@@ -1,5 +1,7 @@
 import { StyleSheet, Text, View, FlatList, TouchableOpacity } from 'react-native';
 import React, { useEffect, useState } from 'react';
+import Flashcard from './components/Flashcard';
+import { useLocalSearchParams } from 'expo-router';
 import Flashcard from '@/app/components/flashcard';
 import { useLocalSearchParams } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
