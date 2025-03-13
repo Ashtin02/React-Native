@@ -13,6 +13,7 @@ export default function AddFlashcard() {
     const [isFlipped, setIsFlipped] = useState(false);
 
 
+    // reset the states using focused effect so when it's navigated to again the fields are blank
     useFocusEffect(
         useCallback(() => {
             setQuestion("");

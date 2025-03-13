@@ -1,6 +1,6 @@
 import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
-import React, { useState } from 'react'
-import { router } from 'expo-router';
+import React, { useState, useCallback } from 'react'
+import { router, useFocusEffect } from 'expo-router';
 
 export default function creation() {
 const [deckName, setDeckName] = useState('');
@@ -8,6 +8,14 @@ const [deckName, setDeckName] = useState('');
 const handleContinue = () => {
     router.push({ pathname: "/addToDeck", params: { deckName }  });
 }
+
+    // reset the state for when it's navigated to again
+    useFocusEffect(
+        useCallback(() => {
+            setDeckName('');
+        }, [])
+    );
+
 
 return (
     <View style={styles.container}>
