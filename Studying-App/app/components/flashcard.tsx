@@ -7,7 +7,7 @@ interface FlashcardProps {
 }
 
 export default function Flashcard({ question, answer }: FlashcardProps) {
-const [flipped, setFlipped] = useState(false);
+const [flipped, setFlipped] = useState(true);
 
 const flipCard = () => {
     setFlipped(!flipped);

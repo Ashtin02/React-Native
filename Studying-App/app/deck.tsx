@@ -1,9 +1,7 @@
 import { StyleSheet, Text, View, FlatList, TouchableOpacity } from 'react-native';
-import React, { useEffect, useState } from 'react';
-import Flashcard from './components/Flashcard';
-import { useLocalSearchParams } from 'expo-router';
+import React, { useCallback, useEffect, useState } from 'react';
 import Flashcard from '@/app/components/flashcard';
-import { useLocalSearchParams } from 'expo-router';
+import { useFocusEffect, useLocalSearchParams } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
@@ -14,7 +12,8 @@ export default function DetailedDeck() {
     const [correct, setCorrect] = useState(0);
     const [selectedDeck, setSelectedDeck] = useState<any>(null);
 
-    useEffect(() => {
+    useFocusEffect(
+        useCallback(() =>{
         const fetchDeck = async () => {
             try {
                 if (name) {
@@ -33,7 +32,8 @@ export default function DetailedDeck() {
             }
         };
         fetchDeck();
-    },[name])
+        }, [name])
+    )
     
     // Reset correct counter when a new deck is selected (based on name change)
     useEffect(() => {

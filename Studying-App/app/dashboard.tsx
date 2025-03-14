@@ -48,6 +48,16 @@ export default function HomeScreen() {
     }
   }
 
+  const deleteDeck = async (name: string) => {
+    try {
+      await AsyncStorage.removeItem(name);
+
+      getDecks();
+    } catch (error) {
+      console.error('Error deleting the deck: ', error);
+    }
+  };
+
 /**
  * Reloads the decks dashboard each time app is loaded or updated
  */
@@ -81,7 +91,8 @@ export default function HomeScreen() {
             deck={{
               name: item.name,
               cards:item.flashcards.length
-          }} onPress={() => router.push("/deck")} />
+            }} onPress={() => router.push("/deck")}
+            deleteDeck={deleteDeck}/>
         )}
         ListFooterComponent={<AddDeckButton onPress={() => router.push('/createDeck')} />}
       />
