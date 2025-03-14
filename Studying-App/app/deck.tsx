@@ -3,6 +3,8 @@ import React, { useCallback, useEffect, useState } from 'react';
 import Flashcard from '@/app/components/flashcard';
 import { useFocusEffect, useLocalSearchParams } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Ionicons } from '@expo/vector-icons';
+
 
 
 
@@ -64,7 +66,7 @@ export default function DetailedDeck() {
 
 return (
     <View style={styles.container}>
-    <Text style={styles.title}>{selectedDeck.name}</Text>
+        <Text style={styles.title}>{selectedDeck.name}</Text>
 
       {/* FlatList with horizontal scrolling */}
         <FlatList
@@ -73,13 +75,21 @@ return (
                 renderItem={({ item }) => (
                     <Flashcard answer={item.answer} question={item.question} />
         )}
-        horizontal 
-        showsHorizontalScrollIndicator={false} 
+            horizontal 
+            showsHorizontalScrollIndicator={false}
+            decelerationRate="fast"
+            snapToAlignment='start'
+            snapToStart={true}
+            snapToInterval={350}
         />
-        <TouchableOpacity style={[styles.button, styles.correct] } onPress={handleCorrect}> <Text style={styles.buttontext}> 👍 </Text></TouchableOpacity>
+        <TouchableOpacity style={[styles.button, styles.correct]} onPress={handleCorrect}>
+        <Ionicons name="thumbs-up-outline" size={30} color="green" />
+        </TouchableOpacity>
         <View><Text style={styles.counter}>{correct} / {selectedDeck.flashcards.length || 0}</Text></View>
-        <TouchableOpacity style={[styles.button, styles.incorrect]} onPress={handleIncorrect}> <Text style={styles.buttontext}> 👎 </Text></TouchableOpacity>
-        </View>
+        <TouchableOpacity style={[styles.button, styles.incorrect]} onPress={handleIncorrect}>
+         <Ionicons name='thumbs-down-outline' size={30} color={"red"}/>
+        </TouchableOpacity>
+    </View>
         );
 }
 
