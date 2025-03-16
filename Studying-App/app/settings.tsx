@@ -1,10 +1,98 @@
-import React from "react";
-import { View, Text } from "react-native";
+import React, { useState } from "react";
+import { View, Text, TextInput, TouchableOpacity, StyleSheet } from "react-native";
 
-export default function Settings() {
+const Settings: React.FC = () => {
+  const [username, setUsername] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [oldPassword, setOldPassword] = useState("");
+
   return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text>Test</Text>
+    <View style={styles.container}>
+      <Text style={styles.header}>Settings</Text>
+      <View style={styles.box}>
+        <Text style={styles.label}>Change Username</Text>
+        <TextInput
+          style={styles.input}
+          placeholder="Enter New Name"
+          value={username}
+          onChangeText={setUsername}
+        />
+        <Text style={styles.label}>Change Password</Text>
+        <TextInput
+          style={styles.input}
+          placeholder="Enter New Password"
+          secureTextEntry
+          value={newPassword}
+          onChangeText={setNewPassword}
+        />
+        <Text style={styles.label}>Confirm New Password</Text>
+        <TextInput
+          style={styles.input}
+          placeholder="Re-enter new Password"
+          secureTextEntry
+          value={confirmPassword}
+          onChangeText={setConfirmPassword}
+        />
+        <Text style={styles.label}>Enter Old Password</Text>
+        <TextInput
+          style={styles.input}
+          placeholder="Old Password"
+          secureTextEntry
+          value={oldPassword}
+          onChangeText={setOldPassword}
+        />
+        <TouchableOpacity style={styles.button}>
+          <Text style={styles.buttonText}>Save Changes</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
-}
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: "center",
+    backgroundColor: "#f0e5f5",
+    paddingTop: 50,
+  },
+  header: {
+    fontSize: 22,
+    fontWeight: "bold",
+    marginBottom: 20,
+  },
+  box: {
+    backgroundColor: "#E5D9EC",
+    padding: 20,
+    borderRadius: 10,
+    width: "90%",
+    alignItems: "center",
+  },
+  label: {
+    fontSize: 16,
+    fontWeight: "bold",
+    marginTop: 10,
+  },
+  input: {
+    width: "100%",
+    backgroundColor: "#fff",
+    padding: 10,
+    borderRadius: 5,
+    marginTop: 5,
+  },
+  button: {
+    marginTop: 20,
+    borderWidth: 1,
+    borderColor: "black",
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 5,
+  },
+  buttonText: {
+    fontSize: 16,
+    fontWeight: "bold",
+  },
+});
+
+export default Settings;
