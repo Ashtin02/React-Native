@@ -11,6 +11,27 @@ export default function HomeScreen() {
   const router = useRouter();
   const [search, setSearch] = useState("");
 
+  const deleteDeck = async (name: string) => {
+    try {
+      await AsyncStorage.removeItem(name);
+      getDecks();
+    } catch (error) {
+      console.error('Error deleting the deck: ', error);
+    }
+  };
+
+  const deleteStorage = async () => {
+    try {
+      let keys = await AsyncStorage.getAllKeys();
+      await AsyncStorage.multiRemove(keys);
+      getDecks();
+    } catch (error) {
+      console.error('Error deleting the deck: ', error);
+    }
+  };
+
+
+
   /**
    * Stores the three preset decks from JSON file into async storage
    */
@@ -36,27 +57,17 @@ export default function HomeScreen() {
         return; // no decks are in storage
       }
       let deckEntries = await AsyncStorage.multiGet(keys); //gets all keys and connects them to their values K/V pair
+      deckEntries = deckEntries.filter((keys) => keys[0] !== "username" && keys[0] !== "password")
       let parsedDecks = deckEntries.map(([name, flashcards]) => ({
         name,
         flashcards: flashcards ? JSON.parse(flashcards) :[],  // turns the "String" flashcards back into the objects they were before being stored
       }));
-
       setDecks(parsedDecks); //sets decks as all decks inside async storage 
       console.log("Decks Succesfully Loaded!")
     } catch (error) {
       console.error("Error Retrieving Decks: ", error);
     }
   }
-
-  const deleteDeck = async (name: string) => {
-    try {
-      await AsyncStorage.removeItem(name);
-
-      getDecks();
-    } catch (error) {
-      console.error('Error deleting the deck: ', error);
-    }
-  };
 
 /**
  * Reloads the decks dashboard each time app is loaded or updated
