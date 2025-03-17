@@ -1,16 +1,48 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Settings: React.FC = () => {
+  const [currentUsername, setCurrentUsername] = useState<string | null>(null);
   const [username, setUsername] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [oldPassword, setOldPassword] = useState("");
 
+  useEffect(() => {
+    // Load the stored username from AsyncStorage
+    const loadUsername = async () => {
+      try {
+        const storedUsername = await AsyncStorage.getItem("username");
+        if (storedUsername) {
+          setCurrentUsername(storedUsername);
+        }
+      } catch (error) {
+        console.error("Failed to load username:", error);
+      }
+    };
+
+    loadUsername();
+  }, []);
+
+  const handleSaveChanges = async () => {
+    if (username.trim() !== "") {
+      try {
+        await AsyncStorage.setItem("username", username);
+        setCurrentUsername(username);
+      } catch (error) {
+        console.error("Failed to save username:", error);
+      }
+    }
+  };
+
   return (
     <View style={styles.container}>
       <Text style={styles.header}>Settings</Text>
       <View style={styles.box}>
+        <Text style={styles.label}>Current Username</Text>
+        <Text style={styles.currentUsername}>{currentUsername || "No username set"}</Text>
+
         <Text style={styles.label}>Change Username</Text>
         <TextInput
           style={styles.input}
@@ -18,6 +50,7 @@ const Settings: React.FC = () => {
           value={username}
           onChangeText={setUsername}
         />
+
         <Text style={styles.label}>Change Password</Text>
         <TextInput
           style={styles.input}
@@ -42,7 +75,8 @@ const Settings: React.FC = () => {
           value={oldPassword}
           onChangeText={setOldPassword}
         />
-        <TouchableOpacity style={styles.button}>
+
+        <TouchableOpacity style={styles.button} onPress={handleSaveChanges}>
           <Text style={styles.buttonText}>Save Changes</Text>
         </TouchableOpacity>
       </View>
@@ -73,6 +107,12 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: "bold",
     marginTop: 10,
+  },
+  currentUsername: {
+    fontSize: 18,
+    fontWeight: "bold",
+    color: "#333",
+    marginBottom: 10,
   },
   input: {
     width: "100%",
