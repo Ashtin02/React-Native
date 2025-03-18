@@ -71,6 +71,7 @@ return (
 
       {/* FlatList with horizontal scrolling */}
         <FlatList
+            key={selectedDeck.name}
             data={selectedDeck.flashcards}
             keyExtractor={(item, index) => index.toString()} 
                 renderItem={({ item }) => (
