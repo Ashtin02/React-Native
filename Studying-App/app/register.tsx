@@ -16,7 +16,7 @@ const RegisterScreen = () => {
            await AsyncStorage.setItem("username", username)
            await AsyncStorage.setItem("password", password)
            Alert.alert('Success', 'Registered successfully!');
-           router.push({pathname: "./dashboard"});
+           router.push({pathname: "/dashboard"});
        }
        else {
            Alert.alert('Error', 'Input fields cannot be blank');
