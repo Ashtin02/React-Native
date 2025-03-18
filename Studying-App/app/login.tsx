@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet, Alert, Pressable} from 'react-native';
 import { useRouter } from 'expo-router';
+import  AsyncStorage  from "@react-native-async-storage/async-storage";
 
 
 const LoginScreen = () => {
@@ -9,13 +10,20 @@ const LoginScreen = () => {
  const [password, setPassword] = useState('');
 
 
- const handleLogin = () => {
-   if (username === 'user' && password === 'password') {
-     Alert.alert('Success', 'Logged in successfully!');
-     router.push({pathname: "./dashboard"});
-   } else {
-     Alert.alert('Error', 'Invalid credentials');
-   }
+  const handleLogin = async () => {
+    try {
+      if (username != '' && password != '') {
+          await AsyncStorage.setItem("username", username)
+          await AsyncStorage.setItem("password", password)
+          Alert.alert('Success', 'Registered successfully!');
+          router.push({pathname: "/dashboard"});
+      }
+      else {
+          Alert.alert('Error', 'Input fields cannot be blank');
+      }
+  } catch (error) {
+      console.error('Error saving credentials:', error);
+  }
  };
 
 

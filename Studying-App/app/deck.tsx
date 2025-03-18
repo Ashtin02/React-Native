@@ -21,6 +21,7 @@ export default function DetailedDeck() {
                 if (name) {
                     let keys = await AsyncStorage.getAllKeys();
                     let entries = await AsyncStorage.multiGet(keys)
+                    entries = entries.filter((keys) => keys[0] !== "username" && keys[0] !== "password")
                     let parsedDecks = entries.map(([name, flashcards]) => ({
                         name,
                         flashcards: flashcards ? JSON.parse(flashcards) :[],
@@ -81,6 +82,7 @@ return (
             snapToAlignment='start'
             snapToStart={true}
             snapToInterval={350}
+
         />
         <TouchableOpacity style={[styles.button, styles.correct]} onPress={handleCorrect}>
         <Ionicons name="thumbs-up-outline" size={30} color="green" />
