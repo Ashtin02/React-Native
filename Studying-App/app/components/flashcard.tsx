@@ -36,7 +36,7 @@ export default function Flashcard({ question, answer }: FlashcardProps) {
 
 return (
     <View style={styles.container}>
-    <TouchableOpacity onPress={flipCard}>
+    <TouchableOpacity testID="button" onPress={flipCard}>
         <View style={styles.cardContainer}>
                 {/* Front Side */}
                 <Animated.View style={[styles.flashcard, { transform: [{ rotateY : frontInterpolate}]}]}>
@@ -47,7 +47,6 @@ return (
                 <Animated.View style={[styles.flashcard, { transform: [{ rotateY : backInterpolate}]}]}>
                     <Text style={[styles.cardText]}>{answer}</Text>
                 </Animated.View>
-
         </View>
     </TouchableOpacity>
     </View>
