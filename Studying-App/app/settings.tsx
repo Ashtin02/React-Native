@@ -170,11 +170,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
-    backgroundColor: "#f0e5f5",
+    backgroundColor: "#CCCCFF",
     justifyContent: "center",
   },
   box: {
-    backgroundColor: "#E5D9EC",
+    backgroundColor: "lavender",
     padding: 20,
     borderRadius: 10,
     width: "90%",
