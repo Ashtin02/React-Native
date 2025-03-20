@@ -1,4 +1,4 @@
-import { useAuth } from "./_authContext";
+import { useAuth } from "../_authContext";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { useRouter } from "expo-router";
 
@@ -19,9 +19,9 @@ export default function CustomDrawer() {
         <TouchableOpacity
           onPress={() => {
             if (state.userToken) {
-              router.push("/dashboard"); // User is logged in, go to Dashboard
+              router.push("/dashboard"); // User is logged in
             } else {
-              router.push("/login"); // User is NOT logged in, reroute to Sign In
+              router.push("/login"); // User is not logged in
             }
           }}
           style={styles.drawerItem}
@@ -29,7 +29,15 @@ export default function CustomDrawer() {
           <Text style={styles.drawerText}>Dashboard</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => router.push("/settings")} style={[styles.drawerItem, styles.drawerItemBottom]}>
+        <TouchableOpacity 
+        onPress={() => {
+            if (state.userToken) {
+              router.push("/settings"); // User is logged in
+            } else {
+              router.push("/login"); // User is not logged in
+            }
+          }}
+           style={[styles.drawerItem, styles.drawerItemBottom]}>
           <Text style={styles.drawerText}>Settings</Text>
         </TouchableOpacity>
       </View>

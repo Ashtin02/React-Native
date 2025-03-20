@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet, Alert, Pressable} from 'react-native';
 import { useRouter } from 'expo-router';
 import  AsyncStorage  from "@react-native-async-storage/async-storage";
-import { useAuth } from './components/_authContext';
+import { useAuth } from './_authContext';
 
 
 const LoginScreen = () => {
