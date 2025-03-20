@@ -15,7 +15,7 @@ const LoginScreen = () => {
       if (username != '' && password != '') {
           await AsyncStorage.setItem("username", username)
           await AsyncStorage.setItem("password", password)
-          Alert.alert('Success', 'Registered successfully!');
+          Alert.alert('Success', 'Login was successfully!');
           router.push({pathname: "/dashboard"});
       }
       else {

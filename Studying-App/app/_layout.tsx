@@ -1,8 +1,10 @@
 import {DrawerContentComponentProps,} from "@react-navigation/drawer";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { Drawer } from "expo-router/drawer";
-import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
+import { StyleSheet, View, Text, TouchableOpacity} from "react-native";
 import { useRouter } from "expo-router";
+import  AsyncStorage from "@react-native-async-storage/async-storage";
+import { useState, useEffect  } from "react";
 
 export default function Layout() {
   return (
@@ -43,6 +45,26 @@ export default function Layout() {
 function CustomDrawerContent(props: DrawerContentComponentProps) {
   const router = useRouter();
 
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  // Check if user data in AsyncStorage
+  useEffect(() => {
+    const checkLoginStatus = async () => {
+      const username = await AsyncStorage.getItem("username");
+      const password = await AsyncStorage.getItem("password");
+      setIsLoggedIn(username !== null && password !== null);
+    };
+
+    checkLoginStatus();
+  }, []);
+
+  // Handle logout 
+  const handleLogout = async () => {
+    await AsyncStorage.clear();
+    setIsLoggedIn(false);
+    router.push("/login"); 
+  };
+
   return (
     <View style={{ flex: 1, justifyContent: "space-between", backgroundColor: '#F3EDF7' }}>
       {/*  Drawer Items */}
@@ -59,8 +81,8 @@ function CustomDrawerContent(props: DrawerContentComponentProps) {
       </View>
 
       {/*  Bottom Drawer Item */}
-      <TouchableOpacity onPress={() => router.push("/login")} style={styles.logoutItem}>
-        <Text style={styles.logoutText}>Login</Text>
+      <TouchableOpacity onPress={isLoggedIn ? handleLogout : () => router.push("/login")} style={styles.logoutItem}>
+        <Text style={styles.logoutText}>{isLoggedIn ? "Log Out" : "Login"}</Text>
       </TouchableOpacity>
     </View>
   );
