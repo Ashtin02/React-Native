@@ -21,7 +21,7 @@ export default function CustomDrawer() {
             if (state.userToken) {
               router.push("/dashboard"); // User is logged in
             } else {
-              router.push("/login"); // User is not logged in
+              router.push("/"); // User is not logged in
             }
           }}
           style={styles.drawerItem}
@@ -34,7 +34,7 @@ export default function CustomDrawer() {
             if (state.userToken) {
               router.push("/settings"); // User is logged in
             } else {
-              router.push("/login"); // User is not logged in
+              router.push("/"); // User is not logged in
             }
           }}
            style={[styles.drawerItem, styles.drawerItemBottom]}>
