@@ -8,7 +8,7 @@ export default function CustomDrawer() {
   const router = useRouter();
 
   return (
-    <View style={{ flex: 1, justifyContent: "space-between", backgroundColor: "#F3EDF7" }}>
+    <View style={{ flex: 1, justifyContent: "space-between", backgroundColor: "lavender" }}>
       {/* Drawer Items */}
       <View>
         <TouchableOpacity onPress={() => router.push("/")} style={[styles.drawerItem, styles.drawerItemTop]}>
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
     borderStyle: "solid",
     borderTopWidth: 2,
     borderBottomWidth: 2,
-    backgroundColor: "#E5D9EC",
+    backgroundColor: "#CCCCFF",
   },
   drawerItemBottom: {
     borderTopWidth: 0,
@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
   },
   logoutItem: {
     padding: 16,
-    backgroundColor: "#E5D9EC",
+    backgroundColor: "#CCCCFF",
     alignItems: "center",
     borderTopWidth: 2,
   },

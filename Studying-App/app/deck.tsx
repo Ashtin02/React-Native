@@ -31,7 +31,7 @@ export default function DetailedDeck() {
                 if (name) {
                     let keys = await AsyncStorage.getAllKeys();
                     let entries = await AsyncStorage.multiGet(keys)
-                    entries = entries.filter((keys) => keys[0] !== "username" && keys[0] !== "password")
+                    entries = entries.filter((keys) => keys[0] !== "username" && keys[0] !== "password" && keys[0] !== "userToken")
                     let parsedDecks = entries.map(([name, flashcards]) => ({
                         name,
                         flashcards: flashcards ? JSON.parse(flashcards) :[],

@@ -17,6 +17,7 @@ export default function Layout() {
         <Drawer.Screen name="dashboard" options={{ title: "Dashboard" }} />
         <Drawer.Screen name="settings" options={{ title: "Settings" }} />
         <Drawer.Screen name="login" options={{ title: "Login" }} />
+        <Drawer.Screen name="register" options={{ title: "Register "}} />
         <Drawer.Screen name = "addFlashcard" options={{title: "Add a new Flashcard"}}/>
         <Drawer.Screen name = "createDeck" options={{title: "Create a New Deck"}}/>
         <Drawer.Screen name = "addToDeck" options={{title: "Add to Deck"}}/>

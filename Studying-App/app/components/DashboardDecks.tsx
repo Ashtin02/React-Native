@@ -28,7 +28,7 @@ export default function DashboardDecks({ deck, onPress, deleteDeck }: { deck: { 
 const styles = StyleSheet.create({
   deckCard: {
     padding: 100,
-    backgroundColor: "#E5D9EC",
+    backgroundColor: "lavender",
     borderRadius: 10,
     marginBottom: 50,
     marginTop: 10,
