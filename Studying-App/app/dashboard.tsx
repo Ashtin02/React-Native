@@ -11,6 +11,14 @@ export default function HomeScreen() {
   const router = useRouter();
   const [search, setSearch] = useState("");
 
+  
+  /**
+   * 
+   * @param name name of deck that will be deleted
+   * 
+   * Deletes the deck from async storage with the given key
+   * then reloads the decks after deletion for UI
+   */
   const deleteDeck = async (name: string) => {
     try {
       await AsyncStorage.removeItem(name);
@@ -20,6 +28,9 @@ export default function HomeScreen() {
     }
   };
 
+  /**
+   * Helper function to clear all of async storage if needed
+   */
   const deleteStorage = async () => {
     try {
       let keys = await AsyncStorage.getAllKeys();
@@ -48,7 +59,7 @@ export default function HomeScreen() {
 
 
   /**
-   * Retrieves all decks from asyncStorage and then update the decks state to most updated version
+   * Retrieves all decks from asyncStorage and filters out any non-deck items (username, password), parses them and updates the deck state
    */
   const getDecks = async () => {
     try {
@@ -62,7 +73,7 @@ export default function HomeScreen() {
         name,
         flashcards: flashcards ? JSON.parse(flashcards) :[],  // turns the "String" flashcards back into the objects they were before being stored
       }));
-      setDecks(parsedDecks); //sets decks as all decks inside async storage 
+      setDecks(parsedDecks); //Updates the state with decks retrieved from AsyncStorage
       console.log("Decks Succesfully Loaded!")
     } catch (error) {
       console.error("Error Retrieving Decks: ", error);
