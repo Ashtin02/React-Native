@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet, Alert, Pressable} from 'react-native';
 import { useRouter } from 'expo-router';
 import  AsyncStorage  from "@react-native-async-storage/async-storage";
+import { useAuth } from './_authContext';
 
 
 const LoginScreen = () => {
  const router = useRouter()
  const [username, setUsername] = useState('');
  const [password, setPassword] = useState('');
+ const {signIn} = useAuth();
 
 
   const handleLogin = async () => {
@@ -15,7 +17,12 @@ const LoginScreen = () => {
       if (username != '' && password != '') {
           await AsyncStorage.setItem("username", username)
           await AsyncStorage.setItem("password", password)
-          Alert.alert('Success', 'Registered successfully!');
+          Alert.alert('Success', 'Login was successfully!');
+
+          const authToken = "token";
+          await AsyncStorage.setItem("userToken", authToken);
+          signIn(authToken);
+
           router.push({pathname: "/dashboard"});
       }
       else {
@@ -34,7 +41,7 @@ const LoginScreen = () => {
 
  return (
    <View style={styles.container}>
-     <Text style={styles.title}>Sign In</Text>
+     <Text style={styles.title}>Login</Text>
      <Text style={styles.label}>Username</Text>
      <TextInput
        style={styles.input}

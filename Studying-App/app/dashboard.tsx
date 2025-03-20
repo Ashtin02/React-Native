@@ -68,7 +68,7 @@ export default function HomeScreen() {
         return; // no decks are in storage
       }
       let deckEntries = await AsyncStorage.multiGet(keys); //gets all keys and connects them to their values K/V pair
-      deckEntries = deckEntries.filter((keys) => keys[0] !== "username" && keys[0] !== "password")
+      deckEntries = deckEntries.filter((keys) => keys[0] !== "username" && keys[0] !== "password" && keys[0] !== "userToken")
       let parsedDecks = deckEntries.map(([name, flashcards]) => ({
         name,
         flashcards: flashcards ? JSON.parse(flashcards) :[],  // turns the "String" flashcards back into the objects they were before being stored
