@@ -43,7 +43,14 @@ export default function CustomDrawer() {
       </View>
 
       {/* Bottom Drawer Item: Login/Logout */}
-      <TouchableOpacity onPress={state.userToken ? signOut : () => router.push("/login")} style={styles.logoutItem}>
+      <TouchableOpacity onPress={() => {
+        if (state.userToken) {
+          signOut()
+          router.push("/"); 
+        } else {
+          router.push("/login");
+        }
+      }} style={styles.logoutItem}>
         <Text style={styles.logoutText}>{state.userToken ? "Log Out" : "Login"}</Text>
       </TouchableOpacity>
     </View>
