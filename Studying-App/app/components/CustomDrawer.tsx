@@ -8,7 +8,7 @@ export default function CustomDrawer() {
   const router = useRouter();
 
   return (
-    <View style={{ flex: 1, justifyContent: "space-between", backgroundColor: "#F3EDF7" }}>
+    <View style={{ flex: 1, justifyContent: "space-between", backgroundColor: "lavender" }}>
       {/* Drawer Items */}
       <View>
         <TouchableOpacity onPress={() => router.push("/")} style={[styles.drawerItem, styles.drawerItemTop]}>
@@ -21,7 +21,7 @@ export default function CustomDrawer() {
             if (state.userToken) {
               router.push("/dashboard"); // User is logged in
             } else {
-              router.push("/login"); // User is not logged in
+              router.push("/"); // User is not logged in
             }
           }}
           style={styles.drawerItem}
@@ -34,7 +34,7 @@ export default function CustomDrawer() {
             if (state.userToken) {
               router.push("/settings"); // User is logged in
             } else {
-              router.push("/login"); // User is not logged in
+              router.push("/"); // User is not logged in
             }
           }}
            style={[styles.drawerItem, styles.drawerItemBottom]}>
@@ -43,7 +43,14 @@ export default function CustomDrawer() {
       </View>
 
       {/* Bottom Drawer Item: Login/Logout */}
-      <TouchableOpacity onPress={state.userToken ? signOut : () => router.push("/login")} style={styles.logoutItem}>
+      <TouchableOpacity onPress={() => {
+        if (state.userToken) {
+          signOut()
+          router.push("/"); 
+        } else {
+          router.push("/login");
+        }
+      }} style={styles.logoutItem}>
         <Text style={styles.logoutText}>{state.userToken ? "Log Out" : "Login"}</Text>
       </TouchableOpacity>
     </View>
@@ -61,7 +68,7 @@ const styles = StyleSheet.create({
     borderStyle: "solid",
     borderTopWidth: 2,
     borderBottomWidth: 2,
-    backgroundColor: "#E5D9EC",
+    backgroundColor: "#CCCCFF",
   },
   drawerItemBottom: {
     borderTopWidth: 0,
@@ -72,7 +79,7 @@ const styles = StyleSheet.create({
   },
   logoutItem: {
     padding: 16,
-    backgroundColor: "#E5D9EC",
+    backgroundColor: "#CCCCFF",
     alignItems: "center",
     borderTopWidth: 2,
   },

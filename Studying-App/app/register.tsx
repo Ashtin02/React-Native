@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet, Alert, Pressable} from 'react-native';
-import { useRouter } from 'expo-router';
+import { useFocusEffect, useRouter } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useAuth } from './_authContext';
 
@@ -11,6 +11,15 @@ const RegisterScreen = () => {
  const [password, setPassword] = useState('');
  const { signIn } = useAuth()
 
+
+
+ useFocusEffect(
+  useCallback(() => {
+      setUsername("");
+      setPassword("");
+
+  }, [])
+);
 
  const handleRegister = async() => {
    try {
