@@ -59,8 +59,8 @@ function CustomDrawerContent(props: DrawerContentComponentProps) {
       </View>
 
       {/*  Bottom Drawer Item */}
-      <TouchableOpacity onPress={() => router.push("/logout")} style={styles.logoutItem}>
-        <Text style={styles.logoutText}>Logout</Text>
+      <TouchableOpacity onPress={() => router.push("/login")} style={styles.logoutItem}>
+        <Text style={styles.logoutText}>Login</Text>
       </TouchableOpacity>
     </View>
   );
