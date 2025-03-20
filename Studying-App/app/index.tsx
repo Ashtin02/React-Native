@@ -1,13 +1,13 @@
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { useRouter } from 'expo-router';
+import Flashcard from '@/app/components/flashcard';
 
 export default function Home() {
   const router = useRouter();
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Welcome to Our Project!
-      </Text>
+      <Flashcard question='What is the best way to study?' answer='With flashcards!'/>
     </View>
   );
 }

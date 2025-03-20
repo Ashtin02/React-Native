@@ -85,7 +85,9 @@ export default function DetailedDeck() {
 
 return (
     <View style={styles.container}>
-        <Text style={styles.title}>{selectedDeck.name}</Text>
+        <View style={styles.titleContainer}>
+            <Text style={styles.title}>{selectedDeck.name}</Text>
+        </View>
 
       {/* FlatList with horizontal scrolling */}
         <FlatList
@@ -119,11 +121,14 @@ container: {
     flex: 1, 
     alignItems: 'center',
     justifyContent: 'center',
-    padding: 20, 
+    padding: 0, 
+    },
+titleContainer: {
+        
 },
 title: {
     fontSize: 40,
-    paddingTop:20,
+    marginTop:60,
     fontWeight:"bold",
 },
 error: {
@@ -167,4 +172,5 @@ flashcard: {
     counter: {
         bottom: 20, 
     }
+
 });

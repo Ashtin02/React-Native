@@ -9,7 +9,7 @@ test("renders question side off initilization", () => {
 });
 
 test("card flips when pressed", async () => {
-    const { getByText, queryByText } = render(
+    const { getByText } = render(
     <Flashcard question="Question" answer="Answer" />
     );
 
