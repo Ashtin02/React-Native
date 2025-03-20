@@ -1,37 +1,85 @@
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { useRouter } from 'expo-router';
 import Flashcard from '@/app/components/flashcard';
+import { useAuth } from "./_authContext";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useEffect, useState } from 'react';
 
 export default function Home() {
+  const { state } = useAuth();
   const router = useRouter();
+  const [username, setUsername] = useState("");
+  
+  useEffect(() => {
+    const fetchUsername = async () => {
+      const storedUsername = await AsyncStorage.getItem("username");
+      if (storedUsername) {
+        setUsername(storedUsername);
+      }
+    };
+    fetchUsername();
+  }, []);
 
-  return (
-    <View style={styles.container}>
 
-      <View style={styles.titleContainer}>
-        <Text style={styles.title}>Welcome to FlipFocus!</Text>
-        <Text style={styles.subHeading}>Learn interactively with flashcards!</Text>
+  if (state.userToken) {
+    
+    return (
+      <View style={styles.container}>
+
+        <View style={styles.titleContainer}>
+          <Text style={styles.title}>Welcome to FlipFocus!</Text>
+          <Text style={styles.subHeading}>Learn interactively with flashcards!</Text>
+          <Text style={styles.welcomeText}>Welcome {username}!</Text>
+        </View>
+
+        <View style={styles.flashcardContainer}>
+          <Flashcard question='What is the best way to study?' answer='With flashcards!' />
+        </View>
+
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity style={styles.button} onPress={() => router.push("/dashboard")}>
+            <Text style={styles.buttonText}>Start</Text>
+          </TouchableOpacity>
+        </View>
+
+        <View style={styles.footer}>
+          <TouchableOpacity onPress={() => router.push("/help")}>
+            <Text style={styles.footerText}>need help?</Text>
+          </TouchableOpacity>
+        </View>
+
       </View>
+    );
+  } else {
+    return (
+      <View style={styles.container}>
 
-      <View style={styles.flashcardContainer}>
-        <Flashcard question='What is the best way to study?' answer='With flashcards!' />
+        <View style={styles.titleContainer}>
+          <Text style={styles.title}>Welcome to FlipFocus!</Text>
+          <Text style={styles.subHeading}>Learn interactively with flashcards!</Text>
+        </View>
+
+        <View style={styles.flashcardContainer}>
+          <Flashcard question='What is the best way to study?' answer='With flashcards!' />
+        </View>
+
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity style={styles.button} onPress={() => router.push("/login")}>
+            <Text style={styles.buttonText}>Login</Text>
+          </TouchableOpacity>
+        </View>
+
+        <View style={styles.footer}>
+          <TouchableOpacity onPress={() => router.push("/help")}>
+            <Text style={styles.footerText}>need help?</Text>
+          </TouchableOpacity>
+        </View>
+
       </View>
+    )
+  }
+  }
 
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity style={styles.button} onPress={()=> router.push("/login")}>
-          <Text style={styles.buttonText}>Login</Text>
-        </TouchableOpacity>
-      </View>
-
-      <View style={styles.footer}>
-        <TouchableOpacity onPress={()=> router.push("/help")}>
-          <Text style={styles.footerText}>need help?</Text>
-        </TouchableOpacity>
-      </View>
-
-    </View>
-  );
-}
 
 const styles = StyleSheet.create({
   container: {
@@ -84,6 +132,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 30,
     borderRadius: 25,
     elevation:5,
+  },
+  welcomeText: {
+    fontSize: 20,
+    color: '#333',
+    marginTop: 20,
   },
   
 });
