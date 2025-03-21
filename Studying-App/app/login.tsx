@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet, Alert, Pressable} from 'react-native';
+import { View, Text, TextInput, Button, StyleSheet, Alert, Pressable, TouchableOpacity} from 'react-native';
 import { useRouter } from 'expo-router';
 
 
@@ -12,14 +12,16 @@ const LoginScreen = () => {
  const handleLogin = () => {
    if (username === 'user' && password === 'password') {
      Alert.alert('Success', 'Logged in successfully!');
-     router.push({pathname: "./dashboard"});
-   } else {
+     router.push({pathname: "/dashboard"});
+   } 
+   else {
      Alert.alert('Error', 'Invalid credentials');
+     return;
    }
  };
 
 
- const handleRegister = () => {
+ const navigateToRegisterPage = () => {
    router.push({pathname: "/register"});
  };
 
@@ -42,10 +44,12 @@ const LoginScreen = () => {
        value={password}
        onChangeText={setPassword}
      />
-     <Button title="Sign In" background-color="light gray" onPress={handleLogin}/>
+     <TouchableOpacity style = {styles.button} onPress={handleLogin}>
+        <Text style = {styles.buttonText}> Sign In </Text>
+     </TouchableOpacity>
      <Text>Don't have an account?</Text>
-     <Pressable onPress = {handleRegister}>
-     <Text style = {styles.text}>Register</Text>
+     <Pressable onPress = {navigateToRegisterPage}>
+        <Text style = {styles.text}>Register</Text>
      </Pressable>
    </View>
  );
@@ -68,7 +72,7 @@ const styles = StyleSheet.create({
    color: 'black',
  },
  input: {
-   width: '100%',
+   width: '25%',
    height: 42,
    borderColor: 'black',
    borderWidth: 1,
@@ -76,10 +80,17 @@ const styles = StyleSheet.create({
    paddingHorizontal: 12,
  },
  button: {
-   color: "gray"
+    width: 100, 
+    height: 25, 
+    backgroundColor: `rgb(238, 238, 238)`,
+    borderWidth: 1,
+    borderColor:'black'
  },
-
-
+ buttonText: {
+    color: 'black', 
+    fontSize: 15, 
+    textAlign: 'center'
+  },
  text: {
    color: 'black',
    textDecorationLine: 'underline'

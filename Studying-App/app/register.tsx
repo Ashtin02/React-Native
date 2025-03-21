@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet, Alert, Pressable} from 'react-native';
+import { View, Text, TextInput, Button, StyleSheet, Alert, TouchableOpacity} from 'react-native';
 import { useRouter } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -16,7 +16,7 @@ const RegisterScreen = () => {
            await AsyncStorage.setItem("username", username)
            await AsyncStorage.setItem("password", password)
            Alert.alert('Success', 'Registered successfully!');
-           router.push({pathname: "./dashboard"});
+           router.push({pathname: "/dashboard"});
        }
        else {
            Alert.alert('Error', 'Input fields cannot be blank');
@@ -46,7 +46,9 @@ const RegisterScreen = () => {
        value={password}
        onChangeText={setPassword}
      />
-     <Button title="Register" background-color="light gray" onPress={handleRegister}/>
+      <TouchableOpacity style = {styles.button} onPress={handleRegister}>
+        <Text style = {styles.buttonText}> Register </Text>
+      </TouchableOpacity>
    </View>
  );
 };
@@ -68,14 +70,27 @@ const styles = StyleSheet.create({
    color: 'black',
  },
  input: {
-   width: '100%',
+   width: '25%',
    height: 42,
    borderColor: 'black',
    borderWidth: 1,
+   borderRadius: 8,
    marginBottom: 12,
    paddingHorizontal: 12,
- }
+   
+ },
+ button: {
+    width: 100, 
+    height: 25, 
+    backgroundColor: `rgb(238, 238, 238)`,
+    borderWidth: 1,
+    borderColor: 'black'
+ },
+ buttonText: {
+    color: 'black', 
+    fontSize: 15, 
+    textAlign: 'center'
+  },
 });
-
 
 export default RegisterScreen;
