@@ -5,10 +5,6 @@ import { useFocusEffect, useLocalSearchParams } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Ionicons } from '@expo/vector-icons';
 
-
-
-
-
 export default function DetailedDeck() {
     //grabs name from passed in param
     const { name } = useLocalSearchParams<{ name?: string }>();
@@ -124,12 +120,24 @@ container: {
     padding: 0, 
     },
 titleContainer: {
-        
+    backgroundColor: "lavender",
+    height: 120,
+    width: 250,
+    alignItems: "center",
+    borderRadius: 15,
+    justifyContent: "center",
+    marginTop: 20,
+    shadowColor: "#000", 
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.8,
+    shadowRadius: 6, 
+    elevation:5,
+    
 },
 title: {
     fontSize: 40,
-    marginTop:60,
-    fontWeight:"bold",
+        fontWeight: 'bold',
+        color: 'black',
 },
 error: {
     fontSize: 20,
@@ -171,6 +179,6 @@ flashcard: {
     }, 
     counter: {
         bottom: 20, 
-    }
+    },
 
 });
