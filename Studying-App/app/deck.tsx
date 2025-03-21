@@ -5,10 +5,6 @@ import { useFocusEffect, useLocalSearchParams } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Ionicons } from '@expo/vector-icons';
 
-
-
-
-
 export default function DetailedDeck() {
     //grabs name from passed in param
     const { name } = useLocalSearchParams<{ name?: string }>();

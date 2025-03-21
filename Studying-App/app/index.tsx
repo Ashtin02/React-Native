@@ -9,7 +9,10 @@ export default function Home() {
   const { state } = useAuth();
   const router = useRouter();
   const [username, setUsername] = useState("");
-  
+
+/**
+ * fetches username from async storage and sets as username state to welcome the user
+ */
   useEffect(() => {
     const fetchUsername = async () => {
       const storedUsername = await AsyncStorage.getItem("username");
@@ -20,7 +23,7 @@ export default function Home() {
     fetchUsername();
   }, []);
 
-
+  // If there is a user signed in display this page 
   if (state.userToken) {
     
     return (
@@ -50,7 +53,10 @@ export default function Home() {
 
       </View>
     );
+
+    // If user is not signed in display this page
   } else {
+
     return (
       <View style={styles.container}>
 
