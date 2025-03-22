@@ -45,7 +45,6 @@ export default function Flashcard({ question, answer }: FlashcardProps) {
     setFlipped(!flipped);
 };
 
-
 return (
     <View style={styles.container}>
     <TouchableOpacity onPress={flipCard}>
@@ -72,7 +71,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     cardContainer: {
-        width: 300, // Ensures the card has dimensions
+        width: 300,
         height: 200,
         marginRight: 25,
         marginLeft:25,

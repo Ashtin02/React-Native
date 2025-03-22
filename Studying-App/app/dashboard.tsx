@@ -41,8 +41,6 @@ export default function HomeScreen() {
     }
   };
 
-
-
   /**
    * Stores the three preset decks from JSON file into async storage
    */
@@ -56,7 +54,6 @@ export default function HomeScreen() {
       console.error("Error Storing Decks: ", error)
     }
   }
-
 
   /**
    * Retrieves all decks from asyncStorage and filters out any non-deck items (username, password), parses them and updates the deck state
@@ -91,11 +88,8 @@ export default function HomeScreen() {
     }, []) 
   );
 
-
-
   // deck state
   const [decks, setDecks] = useState([] as { name: string; flashcards: { question: string; answer: string }[] }[]);
-
 
   // searching
   const filteredDecks = decks.filter((deck) => deck.name.toLowerCase().includes(search.toLowerCase()));
