@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
         marginTop: 15,
         marginBottom: 15,
         padding: 10,
-        backgroundColor: '#9370DB',
+        backgroundColor: '#CCCCFF',
         borderRadius: 8,
     },
     addFlashcardButton: {
