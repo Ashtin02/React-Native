@@ -1,15 +1,28 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet, Alert, Pressable, TouchableOpacity} from 'react-native';
+import { View, Text, TextInput, StyleSheet, Alert, Pressable, TouchableOpacity} from 'react-native';
 import { useRouter } from 'expo-router';
 
-
+/**
+ * Displays login screen and gives option to user to either register or login.
+ * If username and password match with registered credentials redirects user to dashboard.
+ * Otherwise, outputs error message on console.
+ * @returns login screen
+ */
 const LoginScreen = () => {
  const router = useRouter()
+ /**
+ * Fields username and password are initially blank.
+ * Sets username and password fields to values that the user inputed.
+ */
  const [username, setUsername] = useState('');
  const [password, setPassword] = useState('');
 
 
  const handleLogin = () => {
+/**
+ * Values user and password of fields username and password are set as default values  
+ * until new data arrives after user registers. 
+ */
    if (username === 'user' && password === 'password') {
      Alert.alert('Success', 'Logged in successfully!');
      router.push({pathname: "/dashboard"});
@@ -20,7 +33,9 @@ const LoginScreen = () => {
    }
  };
 
-
+/**
+ * Redirects user to registration page after user clicks the underlined text 'Register'. 
+ */
  const navigateToRegisterPage = () => {
    router.push({pathname: "/register"});
  };
