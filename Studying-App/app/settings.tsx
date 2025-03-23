@@ -86,34 +86,6 @@ const Settings: React.FC = () => {
     }
   };
 
-  // For testing purposes only (Clears data)
-  const handleClearStorage = async () => {
-    Alert.alert(
-      "Clear Storage",
-      "Are you sure you want to delete all app data? This action cannot be undone.",
-      [
-        { text: "Cancel", style: "cancel" },
-        {
-          text: "OK",
-          onPress: async () => {
-            try {
-              await AsyncStorage.clear();
-              setCurrentUsername(null);
-              setUsername("");
-              setNewPassword("");
-              setConfirmPassword("");
-              setOldPassword("");
-              setStoredPassword(null);
-              Alert.alert("Success", "Local storage cleared successfully!");
-            } catch (error) {
-              console.error("Failed to clear storage:", error);
-            }
-          },
-        },
-      ]
-    );
-  };
-
   // Change Username/Password 
   return (
     <View style={styles.container}>
@@ -159,9 +131,6 @@ const Settings: React.FC = () => {
           <Text style={styles.buttonText}>Save Changes</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={[styles.button, styles.clearButton]} onPress={handleClearStorage}>
-          <Text style={[styles.buttonText, { color: "red" }]}>Clear Storage</Text>
-        </TouchableOpacity>
       </View>
     </View>
   );
