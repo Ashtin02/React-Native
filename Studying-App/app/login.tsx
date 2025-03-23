@@ -1,56 +1,49 @@
-import React, { useCallback, useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet, Alert, Pressable} from 'react-native';
-import { useFocusEffect, useRouter } from 'expo-router';
-import  AsyncStorage  from "@react-native-async-storage/async-storage";
-import { useAuth } from './_authContext';
+import React, { useState } from 'react';
+import { View, Text, TextInput, StyleSheet, Alert, Pressable, TouchableOpacity} from 'react-native';
+import { useRouter } from 'expo-router';
 
-
+/**
+ * Displays login screen and gives option to user to either register or login.
+ * If username and password match with registered credentials redirects user to dashboard.
+ * Otherwise, outputs error message on console.
+ * @returns login screen
+ */
 const LoginScreen = () => {
  const router = useRouter()
+ /**
+ * Fields username and password are initially blank.
+ * Sets username and password fields to values that the user inputed.
+ */
  const [username, setUsername] = useState('');
  const [password, setPassword] = useState('');
- const {signIn} = useAuth();
-
- useFocusEffect(
-  useCallback(() => {
-      setUsername("");
-      setPassword("");
-
-  }, [])
-);
 
 
-
-  const handleLogin = async () => {
-    try {
-      if (username != '' && password != '') {
-          await AsyncStorage.setItem("username", username)
-          await AsyncStorage.setItem("password", password)
-          Alert.alert('Success', 'Login was successfully!');
-
-          const authToken = "token";
-          await AsyncStorage.setItem("userToken", authToken);
-          signIn(authToken);
-
-          router.push({pathname: "/dashboard"});
-      }
-      else {
-          Alert.alert('Error', 'Input fields cannot be blank');
-      }
-  } catch (error) {
-      console.error('Error saving credentials:', error);
-  }
+ const handleLogin = () => {
+/**
+ * Values user and password of fields username and password are set as default values  
+ * until new data arrives after user registers. 
+ */
+   if (username === 'user' && password === 'password') {
+     Alert.alert('Success', 'Logged in successfully!');
+     router.push({pathname: "/dashboard"});
+   } 
+   else {
+     Alert.alert('Error', 'Invalid credentials');
+     return;
+   }
  };
 
-
- const handleRegister = () => {
+/**
+ * Redirects user to registration page after user clicks the underlined text 'Register'. 
+ */
+ const navigateToRegisterPage = () => {
    router.push({pathname: "/register"});
  };
 
 
  return (
    <View style={styles.container}>
-     <Text style={styles.title}>Login</Text>
+     <Text style={styles.title}>Sign In</Text>
      <Text style={styles.label}>Username</Text>
      <TextInput
        style={styles.input}
@@ -66,10 +59,12 @@ const LoginScreen = () => {
        value={password}
        onChangeText={setPassword}
      />
-     <Button title="Sign In" background-color="light gray" onPress={handleLogin}/>
+     <TouchableOpacity style = {styles.button} onPress={handleLogin}>
+        <Text style = {styles.buttonText}> Sign In </Text>
+     </TouchableOpacity>
      <Text>Don't have an account?</Text>
-     <Pressable onPress = {handleRegister}>
-     <Text style = {styles.text}>Register</Text>
+     <Pressable onPress = {navigateToRegisterPage}>
+        <Text style = {styles.text}>Register</Text>
      </Pressable>
    </View>
  );
@@ -92,7 +87,7 @@ const styles = StyleSheet.create({
    color: 'black',
  },
  input: {
-   width: '100%',
+   width: '25%',
    height: 42,
    borderColor: 'black',
    borderWidth: 1,
@@ -100,10 +95,17 @@ const styles = StyleSheet.create({
    paddingHorizontal: 12,
  },
  button: {
-   color: "gray"
+    width: 100, 
+    height: 25, 
+    backgroundColor: `rgb(238, 238, 238)`,
+    borderWidth: 1,
+    borderColor:'black'
  },
-
-
+ buttonText: {
+    color: 'black', 
+    fontSize: 15, 
+    textAlign: 'center'
+  },
  text: {
    color: 'black',
    textDecorationLine: 'underline'
