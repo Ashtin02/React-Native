@@ -5,6 +5,9 @@ import { useAuth } from "./_authContext";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useEffect, useState } from 'react';
 
+/**
+ * Default landing page when a user enters the project, prompting them to login or to navigate to home
+ */
 export default function Home() {
   const { state } = useAuth();
   const router = useRouter();

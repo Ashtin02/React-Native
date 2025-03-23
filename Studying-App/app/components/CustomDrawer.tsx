@@ -3,6 +3,11 @@ import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { useRouter } from "expo-router";
 
 
+/**
+ * This component is used to define the drawer that is found across the project, it also has additional
+ * functionality to ensure that a user is logged in versus not to dynamically change the drawre components
+ * @returns a custom drawer that is used to navigate across the project
+ */
 export default function CustomDrawer() {
   const { state, signOut } = useAuth();
   const router = useRouter();
@@ -44,14 +49,15 @@ export default function CustomDrawer() {
 
       {/* Bottom Drawer Item: Login/Logout */}
       <TouchableOpacity onPress={() => {
+      
         if (state.userToken) {
-          signOut()
+          signOut()           // logs out the user using the defined function
           router.push("/"); 
         } else {
           router.push("/login");
         }
       }} style={styles.logoutItem}>
-        <Text style={styles.logoutText}>{state.userToken ? "Log Out" : "Login"}</Text>
+        <Text style={styles.logoutText}>{state.userToken ? "Log Out" : "Login"}</Text> 
       </TouchableOpacity>
     </View>
   );

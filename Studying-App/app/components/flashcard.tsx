@@ -1,4 +1,3 @@
-import { transform } from '@babel/core';
 import React, { useRef, useState } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Animated } from 'react-native';
 

@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 import { View, FlatList, StyleSheet } from "react-native";
 import { useFocusEffect, useRouter } from "expo-router";
 import DashboardDecks from "./components/DashboardDecks";
@@ -7,7 +7,7 @@ import AddDeckButton from "./components/AddButton";
 import deckData from "../decks.json"
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-export default function HomeScreen() {
+export default function Dashboard() {
   const router = useRouter();
   const [search, setSearch] = useState("");
 
