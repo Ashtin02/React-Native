@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 import { View, FlatList, StyleSheet } from "react-native";
 import { useFocusEffect, useRouter } from "expo-router";
 import DashboardDecks from "./components/DashboardDecks";

@@ -1,17 +1,15 @@
-import { View, Text, TouchableOpacity, StyleSheet, Image } from "react-native";
+import { Text, TouchableOpacity, StyleSheet } from "react-native";
 import { useRouter } from "expo-router";
 import Icon from "react-native-vector-icons/MaterialIcons";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 
 /**
  * This component helps to list the decks in an organized fashion for the dashboard page
  * @param param0 object of the deck name, and the amount of cards it has
  */
-export default function DashboardDecks({ deck, onPress, deleteDeck }: { deck: { name: string; cards: number }; onPress: () => void; deleteDeck: (name: string) => void;  }) {
+export default function DashboardDecks({ deck, deleteDeck }: { deck: { name: string; cards: number }; onPress: () => void; deleteDeck: (name: string) => void;  }) {
   const router = useRouter();
 
   
- 
 
   return (
     <TouchableOpacity

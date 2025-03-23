@@ -1,5 +1,5 @@
 import { Drawer } from "expo-router/drawer";
-import { AuthProvider, useAuth } from "./_authContext";
+import { AuthProvider } from "./_authContext";
 import CustomDrawer from "./components/CustomDrawer";
 
 export default function Layout() {
