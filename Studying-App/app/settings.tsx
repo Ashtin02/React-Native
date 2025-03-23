@@ -114,6 +114,7 @@ const Settings: React.FC = () => {
     );
   };
 
+  // Change Username/Password 
   return (
     <View style={styles.container}>
       <Text style={styles.header}>Settings</Text>
