@@ -2,6 +2,10 @@ import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-nativ
 import React, { useState, useCallback } from 'react'
 import { router, useFocusEffect } from 'expo-router';
 
+/**
+ * Gets the name of a new deck that the user will be created, and passes
+ * along the information to addToDeck so a user can begin to create the deck
+ */
 export default function creation() {
 const [deckName, setDeckName] = useState('');
 

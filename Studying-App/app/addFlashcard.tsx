@@ -5,6 +5,11 @@ import { useLocalSearchParams } from 'expo-router';
 import { useFocusEffect } from 'expo-router';
 import { useCallback } from 'react';
 
+/**
+ * Function that is responsible for creating a new flashcard that will be added to a deck, 
+ * it also ensures that a new array of flashcards is sent back to its caller that includes the newly
+ * created one
+ */
 export default function AddFlashcard() {
     const { deckName, flashcards } = useLocalSearchParams<{ deckName: string, flashcards: string }>();
     const router = useRouter();

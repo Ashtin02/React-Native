@@ -1,7 +1,11 @@
 import { Drawer } from "expo-router/drawer";
-import { AuthProvider, useAuth } from "./_authContext";
+import { AuthProvider } from "./_authContext";
 import CustomDrawer from "./components/CustomDrawer";
 
+/**
+ * Main file of the project, screens are defined here and AuthProvider is the wrapper to manage
+ * user logged in/out management
+ */
 export default function Layout() {
   return (
     <AuthProvider>
@@ -13,6 +17,7 @@ export default function Layout() {
           },
         }} 
       >
+        {/** Screens/pages found in the project */}
         <Drawer.Screen name="index" options={{ title: "Home" }} />
         <Drawer.Screen name="dashboard" options={{ title: "Dashboard" }} />
         <Drawer.Screen name="settings" options={{ title: "Settings" }} />
@@ -21,6 +26,8 @@ export default function Layout() {
         <Drawer.Screen name = "addFlashcard" options={{title: "Add a new Flashcard"}}/>
         <Drawer.Screen name = "createDeck" options={{title: "Create a New Deck"}}/>
         <Drawer.Screen name = "addToDeck" options={{title: "Add to Deck"}}/>
+        <Drawer.Screen name = "deck" options={{title: "Deck"}}/>
+
       </Drawer>
     </AuthProvider>
   );

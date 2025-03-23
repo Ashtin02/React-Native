@@ -1,15 +1,21 @@
 import { StyleSheet, Text, TouchableOpacity, View, FlatList } from 'react-native';
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'expo-router';
-import { useLocalSearchParams, useFocusEffect } from 'expo-router';
+import { useLocalSearchParams } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Flashcard from './components/flashcard';
 
+// defines flashcard
 interface FlashcardType {
     question: string;
     answer: string;
 }
 
+/**
+ * Is the "parent" of addToFlashcard, it provides a view of all of the flashcards that have been created thusfar
+ * and then saves it to async storage when a user clicks "finish" to ensure it is viewable from dashboard
+ * and can be accessed again
+ */
 export default function FlashcardCreation() {
     const { deckName, existingFlashcards } = useLocalSearchParams<{ deckName: string, existingFlashcards?: string }>();
     const [flashcards, setFlashcards] = useState<FlashcardType[]>([]); 
@@ -93,7 +99,7 @@ const styles = StyleSheet.create({
         marginTop: 15,
         marginBottom: 15,
         padding: 10,
-        backgroundColor: '#9370DB',
+        backgroundColor: '#CCCCFF',
         borderRadius: 8,
     },
     addFlashcardButton: {
