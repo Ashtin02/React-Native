@@ -19,7 +19,14 @@ Whether you're preparing for exams, learning a new language, or just want to mem
 - **Petar:** 
     - [ contributions ]
 - **Max:**
-    - [ contributions ]
+    - Implemented a side drawer for better page routing
+    - Created AddButton.tsx, CustomDrawer.tsx, DashboardDecks.tsx and SearchBar.tsx components
+    - Created the skeleton, and fleshed out the dashboard
+    - Created the logic behind addFlashcard.tsx, and addToDeck.tsx
+    - Implemented ESLint into our project
+    - Created testing for addToDeck
+    - Utilized docs from react-router to create dynamic routing for when a user is logged in vs. not
+    - Set up _layout.tsx so that every screen has proper naming screen/drawer is set up properly
 - **Ashtin:** 
     - Configured Jest for testing
     - Created Flashcard.tsx component
