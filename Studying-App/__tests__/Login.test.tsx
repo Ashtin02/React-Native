@@ -21,11 +21,6 @@ describe('LoginScreen', () => {
     const loginButton = getByTestId('login');
     fireEvent.press(loginButton);
   });
-
-  
-
-
-
 });
 
 
