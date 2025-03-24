@@ -57,7 +57,7 @@ const RegisterScreen = () => {
        onChangeText={setPassword}
      />
       <TouchableOpacity style = {styles.button} onPress={handleRegister}>
-        <Text style = {styles.buttonText}> Register </Text>
+        <Text testID= "register" style = {styles.buttonText}> Register </Text>
       </TouchableOpacity>
    </View>
  );
