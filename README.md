@@ -63,3 +63,6 @@ Whether you're preparing for exams, learning a new language, or just want to mem
 - Import/Export Decks: give users the option to import ot export decks in a JSON format 
 - Dark Mode: Give users the option to change color theme from light to dark
 
+**Wireframes Design**
+<img width="912" alt="Screenshot 2025-03-24 at 5 09 25 PM" src="https://github.com/user-attachments/assets/59487263-7e50-4f92-a9c3-be63944a7ef0" />
+
