@@ -28,18 +28,6 @@ export default function Dashboard() {
     }
   };
 
-  /**
-   * Helper function to clear all of async storage if needed
-   */
-  const deleteStorage = async () => {
-    try {
-      let keys = await AsyncStorage.getAllKeys();
-      await AsyncStorage.multiRemove(keys);
-      getDecks();
-    } catch (error) {
-      console.error('Error deleting the deck: ', error);
-    }
-  };
 
   /**
    * Stores the three preset decks from JSON file into async storage

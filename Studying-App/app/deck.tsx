@@ -5,6 +5,18 @@ import { useFocusEffect, useLocalSearchParams } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Ionicons } from '@expo/vector-icons';
 
+interface Flashcard {
+    question: string;
+    answer: string;
+}
+
+interface Deck {
+    name: string;
+    flashcards: Flashcard[];
+}
+
+
+
 export default function DetailedDeck() {
     //grabs name from passed in param
     const { name } = useLocalSearchParams<{ name?: string }>();
@@ -13,7 +25,7 @@ export default function DetailedDeck() {
     const [correct, setCorrect] = useState(0);
 
     // State for selected deck
-    const [selectedDeck, setSelectedDeck] = useState<any>(null);
+    const [selectedDeck, setSelectedDeck] = useState<Deck | undefined>(undefined);
 
     /**
      * Fetches the decks from async storage, 
