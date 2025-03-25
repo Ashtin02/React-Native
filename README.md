@@ -46,7 +46,9 @@ Whether you're preparing for exams, learning a new language, or just want to mem
 - **Design Changes:** 
     - Decided to pivot from an online app to a more reliable offline app accessible with or without internet connection.
     - Drawer was changed from it's original design since we were no longer going to use a database so there was no reason to have "Search Decks", profile pictures, etc... since users are mocked
-    - Added some new UI components, like react natives Animated API for animations. 
+    - Added some new UI components, like react natives Animated API for animations.
+    - The actual login and register page will not match the design because the functionality of my code
+      for those pages is not compatible with what my team has.  
 
 
 - **Feature Changes:** 
