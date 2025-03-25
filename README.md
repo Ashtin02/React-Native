@@ -17,7 +17,9 @@ Whether you're preparing for exams, learning a new language, or just want to mem
 - **Anthony:** 
     - [ contributions ]
 - **Petar:** 
-    - [ contributions ]
+    - Created login.tsx page
+    - Created register.tsx page
+    - Login test
 - **Max:**
     - Implemented a side drawer for better page routing
     - Created AddButton.tsx, CustomDrawer.tsx, DashboardDecks.tsx and SearchBar.tsx components
