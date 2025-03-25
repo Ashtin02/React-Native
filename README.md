@@ -42,7 +42,8 @@ Whether you're preparing for exams, learning a new language, or just want to mem
      - Originally planned to use a database like SQLite, but due to time constraints from the CodeDay project, we pivoted to an offline app using AsyncStorage.
      - While this may be a simplier approach it was something that was realistic with the new time frame we had and also introduced offline functionality so we chose this path. 
 - **Design Changes:** 
-    - Decided to pivot from an online app to a more reliable offline app accessible with or without internet connection. 
+    - Decided to pivot from an online app to a more reliable offline app accessible with or without internet connection.
+    - Drawer was changed from it's original design since we were no longer going to use a database so there was no reason to have "Search Decks", profile pictures, etc... since users are mocked
     - Added some new UI components, like react natives Animated API for animations. 
 
 
