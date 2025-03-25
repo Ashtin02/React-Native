@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
-import { View, Text, TextInput, StyleSheet, Alert, TouchableOpacity} from 'react-native';
-import { useRouter } from 'expo-router';
+import React, { useCallback, useState } from 'react';
+import { View, Text, TextInput, Button, StyleSheet, Alert, Pressable} from 'react-native';
+import { useFocusEffect, useRouter } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useAuth } from './_authContext';
 
 /**
  * Displays register screen.
@@ -18,7 +19,17 @@ const RegisterScreen = () => {
  */
  const [username, setUsername] = useState('');
  const [password, setPassword] = useState('');
+ const { signIn } = useAuth()
 
+
+
+ useFocusEffect(
+  useCallback(() => {
+      setUsername("");
+      setPassword("");
+
+  }, [])
+);
 
  const handleRegister = async() => {
    try {
@@ -26,6 +37,11 @@ const RegisterScreen = () => {
            await AsyncStorage.setItem("username", username)
            await AsyncStorage.setItem("password", password)
            Alert.alert('Success', 'Registered successfully!');
+           
+           const authToken = "token";
+           await AsyncStorage.setItem("userToken", authToken);
+           signIn(authToken);
+
            router.push({pathname: "/dashboard"});
        }
        else {
@@ -56,9 +72,7 @@ const RegisterScreen = () => {
        value={password}
        onChangeText={setPassword}
      />
-      <TouchableOpacity style = {styles.button} onPress={handleRegister}>
-        <Text style = {styles.buttonText}> Register </Text>
-      </TouchableOpacity>
+     <Button title="Register" background-color="light gray" onPress={handleRegister}/>
    </View>
  );
 };
@@ -80,27 +94,14 @@ const styles = StyleSheet.create({
    color: 'black',
  },
  input: {
-   width: '25%',
+   width: '100%',
    height: 42,
    borderColor: 'black',
    borderWidth: 1,
-   borderRadius: 8,
    marginBottom: 12,
    paddingHorizontal: 12,
-   
- },
- button: {
-    width: 100, 
-    height: 25, 
-    backgroundColor: `rgb(238, 238, 238)`,
-    borderWidth: 1,
-    borderColor: 'black'
- },
- buttonText: {
-    color: 'black', 
-    fontSize: 15, 
-    textAlign: 'center'
-  },
+ }
 });
+
 
 export default RegisterScreen;
