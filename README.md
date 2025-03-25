@@ -15,7 +15,9 @@ Whether you're preparing for exams, learning a new language, or just want to mem
 
 ## Team Member Individual Contribution
 - **Anthony:** 
-    - [ contributions ]
+    - Created settings.tsx page
+    - Created help.tsx page
+    - settings test using jest
 - **Petar:** 
     - Created login.tsx page
     - Created register.tsx page
