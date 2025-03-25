@@ -49,7 +49,7 @@ export default function Home() {
         </View>
 
         <View style={styles.footer}>
-          <TouchableOpacity onPress={() => router.push("/help")}>
+          <TouchableOpacity onPress={() => router.push("./help")}>
             <Text style={styles.footerText}>need help?</Text>
           </TouchableOpacity>
         </View>
@@ -79,7 +79,7 @@ export default function Home() {
         </View>
 
         <View style={styles.footer}>
-          <TouchableOpacity onPress={() => router.push("/help")}>
+          <TouchableOpacity onPress={() => router.push("./help")}>
             <Text style={styles.footerText}>need help?</Text>
           </TouchableOpacity>
         </View>

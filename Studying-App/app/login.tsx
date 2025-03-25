@@ -4,9 +4,18 @@ import { useFocusEffect, useRouter } from 'expo-router';
 import  AsyncStorage  from "@react-native-async-storage/async-storage";
 import { useAuth } from './_authContext';
 
-
+/**
+ * Displays login screen and gives option to user to either register or login.
+ * If username and password match with registered credentials redirects user to dashboard.
+ * Otherwise, outputs error message on console.
+ * @returns login screen
+ */
 const LoginScreen = () => {
  const router = useRouter()
+ /**
+ * Fields username and password are initially blank.
+ * Sets username and password fields to values that the user inputed.
+ */
  const [username, setUsername] = useState('');
  const [password, setPassword] = useState('');
  const {signIn} = useAuth();
@@ -42,7 +51,9 @@ const LoginScreen = () => {
   }
  };
 
-
+/**
+ * Redirects user to registration page after user clicks the underlined text 'Register'. 
+ */
  const handleRegister = () => {
    router.push({pathname: "/register"});
  };
@@ -66,7 +77,7 @@ const LoginScreen = () => {
        value={password}
        onChangeText={setPassword}
      />
-     <Button title="Sign In" background-color="light gray" onPress={handleLogin}/>
+     <Button testID = "login" title="Sign In" background-color="light gray" onPress={handleLogin}/>
      <Text>Don't have an account?</Text>
      <Pressable onPress = {handleRegister}>
      <Text style = {styles.text}>Register</Text>

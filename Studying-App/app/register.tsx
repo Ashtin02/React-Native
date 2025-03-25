@@ -4,9 +4,19 @@ import { useFocusEffect, useRouter } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useAuth } from './_authContext';
 
-
+/**
+ * Displays register screen.
+ * If username and password fields are not blank saves user credentials in async storage and redirects user to dashboard.
+ * Otherwise, outputs error message on console. 
+ * Catches error if user credentials couldn't be saved.
+ * @returns register screen
+ */
 const RegisterScreen = () => {
  const router = useRouter()
+ /**
+ * Fields username and password are initially blank.
+ * Sets username and password fields to values that the user inputed.
+ */
  const [username, setUsername] = useState('');
  const [password, setPassword] = useState('');
  const { signIn } = useAuth()
