@@ -21,7 +21,7 @@ Whether you're preparing for exams, learning a new language, or just want to mem
 - **Petar:** 
     - Created login.tsx page
     - Created register.tsx page
-    - Login test
+    - login test using Jest
 - **Max:**
     - Implemented a side drawer for better page routing
     - Created AddButton.tsx, CustomDrawer.tsx, DashboardDecks.tsx and SearchBar.tsx components
